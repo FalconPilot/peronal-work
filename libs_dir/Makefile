@@ -1,6 +1,6 @@
 # Initialisation des couleurs
 
-END =		\033[0m
+STD =		\033[0m
 RED =		\033[31m
 GRE =		\033[32m
 YEL =		\033[33m
@@ -72,7 +72,9 @@ template: header
 	@echo "  ${GRE}---Creating directory---${STD}"
 	@echo ""
 	@mkdir $(NAME)
-	@echo "#Put all source files below, separated by a newline\n#Comments and empty lines are ignored\n\nfichier1.c\nfichier2.c\n..." > $(PATH)source.txt
+	@echo "#Put all source files below, sparated by a newline" > $(PATH)source.txt
+	@echo "#Comments and empty lines are ignored\n" >> $(PATH)source.txt
+	@echo "fichier1.c\nfichier2.c\n..." >> $(PATH)source.txt
 	@echo "  You will find a directory called ${PIN}\"$(NAME)\"${STD}"
 	@echo "  and a blank ${PIN}source.txt${STD} file."
 	@echo ""
