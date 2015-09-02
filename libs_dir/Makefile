@@ -11,24 +11,22 @@ CYA =		\033[36m
 #Initialisation des variables
 
 NAME :=		$(shell if [ -z $(NAME) ]; then read -p "Library name : " REPLY; echo $$REPLY; fi)
-DIR =		~/codage/perso/source_C/
+DIR =		~/path_to_source_files_directory/
 PATH =		$(NAME)/
 
 SRC =		$(shell cat $(PATH)source.txt | grep -v "\#" | tr -d '\n' | sed -e 's/\.c/.o /g')
 OBJ =		$(PATH)$(shell echo $(SRC) | sed -e 's/ / $(NAME)\//g')
 LIB =		$(PATH)$(NAME).a
 
-INCS =		-I../headers_C
-FLAGS =		-Wall -Wextra -Werror $(INCS)
+INCS =		~/path_to_headers_directory/
+FLAGS =		-Wall -Wextra -Werror -I$(INCS)
 COUNT =		0
 
 # Règles de compilation
 
 all: header conditions $(LIB)
-	@echo "    ${YEL}[Updated ${PIN}$(COUNT)${YEL} file(s).]${STD}"
-	@echo ""
-	@echo "  ${GRE}---Compilation done !---${STD}"
-	@echo ""
+	@echo "    ${YEL}[Updated ${PIN}$(COUNT)${YEL} file(s).]${STD}\n"
+	@echo "  ${GRE}---Compilation done !---${STD}\n"
 
 $(NAME): all
 	
@@ -56,37 +54,28 @@ $(PATH)%.o: $(DIR)%.c
 	@$(eval COUNT := $(shell expr $(COUNT) + 1))
 
 clean: header
-	@echo "  ${CYA}---Cleaning process---"
-	@echo ""
+	@echo "\n  ${CYA}---Cleaning process---\n"
 	@rm -f $(OBJ)
-	@echo "  ${YEL}--> Files deleted !${STD}"
-	@echo ""
+	@echo "  ${YEL}--> Files deleted !${STD}\n"
 
 fclean: clean
 	@rm -f $(LIB)
-	@echo "  ${YEL}--> Library deleted !${STD}"
-	@echo ""
+	@echo "  ${YEL}--> Library deleted !${STD}\n"
 
 template: header
-	@echo ""
-	@echo "  ${GRE}---Creating directory---${STD}"
-	@echo ""
+	@echo "\n  ${GRE}---Creating directory---${STD}\n"
 	@mkdir $(NAME)
 	@echo "#Put all source files below, sparated by a newline" > $(PATH)source.txt
 	@echo "#Comments and empty lines are ignored\n" >> $(PATH)source.txt
 	@echo "fichier1.c\nfichier2.c\n..." >> $(PATH)source.txt
 	@echo "  You will find a directory called ${PIN}\"$(NAME)\"${STD}"
-	@echo "  and a blank ${PIN}source.txt${STD} file."
-	@echo ""
+	@echo "  and a blank ${PIN}source.txt${STD} file.\n"
 
 header:
 	@clear
-	@echo "${BLU}"
-	@echo "      ____________________"
+	@echo "${BLU}      ____________________"
 	@echo "     |                    |"
 	@echo "     | ${GRE}[Library Compiler] ${BLU}|"
-	@echo "     |____________________|"
-	@echo ""
+	@echo "     |____________________|\n"
 	@echo "  ${PIN}Name :${STD} $(NAME).a"
-	@echo "  ${PIN}Path :${STD} ./$(PATH)"
-	@echo ""
+	@echo "  ${PIN}Path :${STD} ./$(PATH)\n"
