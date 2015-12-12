@@ -1,8 +1,13 @@
-# =======================================
+# ***************************************
 # |            Dice thrower             |
-# =======================================
+# ***************************************
 
 begin
+
+# =======================================
+# |           Input integers            |
+# =======================================
+
 	def prompt(*args)
 		print(*args)
 		value = gets.to_i
@@ -12,6 +17,10 @@ begin
 		end
 		return value
 	end
+
+# =======================================
+# |       Program initialization        |
+# =======================================
 
 	puts "======================="
 	puts "| Random dice-thrower |"
@@ -25,6 +34,10 @@ begin
 	tmin = (throws * sides) / 2 - deriv
 	tmax = (throws * sides) / 2 + deriv
 
+# =======================================
+# |         Result calculation          |
+# =======================================
+
 	puts "[Total should be between " + tmin.to_s + " and " + tmax.to_s + "]"
 	begin 
 		total = 0
@@ -33,6 +46,11 @@ begin
 			total += dice[index]
 		end 
 	end until total >= tmin && total <= tmax
+
+# =======================================
+# |          Display result             |
+# =======================================
+
 	puts "=================="
 	dice.each_with_index do |value, index|
 		puts "•ROLL " + (index + 1).to_s + " =	" + value.to_s
@@ -41,3 +59,4 @@ begin
 	puts "Total value =	" + total.to_s
 	puts "=================="
 end
+# ***************************************
