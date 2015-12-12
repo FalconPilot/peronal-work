@@ -1,5 +1,7 @@
 # ***************************************
+# |                                     |
 # |            Dice thrower             |
+# |                                     |
 # ***************************************
 
 begin
@@ -15,7 +17,7 @@ begin
 			puts "Invalid input ! (must be strictly positive number)"
 			exit
 		end
-		return value
+		value
 	end
 
 # =======================================
@@ -59,4 +61,5 @@ begin
 	puts "Total value =	" + total.to_s
 	puts "=================="
 end
+
 # ***************************************
