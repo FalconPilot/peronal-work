@@ -1,3 +1,7 @@
+# =======================================
+# |            Dice thrower             |
+# =======================================
+
 begin
 	puts "Generating a new random throw"
 
