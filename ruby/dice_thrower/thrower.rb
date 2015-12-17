@@ -55,7 +55,7 @@ begin
 
 	puts "=================="
 	dice.each_with_index do |value, index|
-		puts "•ROLL " + (index + 1).to_s + " =	" + value.to_s
+		puts "•ROLL #{(index + 1)} =	#{value}"
 	end
 	puts "=================="
 	puts "Total value =	" + total.to_s
