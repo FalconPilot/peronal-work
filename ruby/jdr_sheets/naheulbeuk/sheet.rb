@@ -8,6 +8,16 @@ class Sheet_Create
 # |             Initialization               |
 # ============================================
 	def initialize
+		@bla = "\x1b[30m"
+		@red = "\x1b[31m"
+		@gre = "\x1b[32m"
+		@yel = "\x1b[33m"
+		@blu = "\x1b[34m"
+		@pin = "\x1b[35m"
+		@cya = "\x1b[36m"
+		@whi = "\x1b[37m"
+		@std = "\x1b[39m"
+
 		header
 		3.times do |i|
 			stats = roll_stats(i)
@@ -15,14 +25,17 @@ class Sheet_Create
 			class_choices(stats)
 		end
 		roll_misc
-		puts "=========================="
+		separation
+	end
+	def separation
+		puts "#{@blu}=========================#{@std}"
 	end
 # ============================================
 # |             Program header               |
 # ============================================
 
 	def header
-		puts "=========================="
+		separation
 		puts "    Création de fiche"
 	end
 
@@ -31,16 +44,18 @@ class Sheet_Create
 # ============================================
 
 	def roll_stats(num)
-		puts "=========================="
-		puts "       Tirage n°#{num + 1}"
-		puts "=========================="
+		separation
+		puts "|      Tirage n°#{num + 1}    	|"
+		separation
 		total = 0
 		stats = Array.new(5, 0)
-		names = Array["COU", "INT", "ADR", "CHA", "FOR"]
+		names = Array["#{@pin}COU", "#{@cya}INT", "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
 		5.times do |index|
 			stats[index] = (rand(1..6) + 7)
-			puts names[index] + " =	" + stats[index].to_s
+			puts "#{names[index]}#{@std} =	#{stats[index]}"
+			total += stats[index]
 		end
+		puts "#{@bla}Total : #{@std}#{total} (#{@red}min 40, #{@gre}max 65#{@std})"
 		stats
 	end
 
@@ -49,7 +64,7 @@ class Sheet_Create
 # ============================================
 	
 	def race_choices(stats)
-		puts "=========================="
+		separation
 		humain =		Array[0, 0, 0, 0, 0, "Humain"]
 		barbare =		Array[12, 0, 0, 0, 13, "Barbare"]
 		nain =			Array[11, 0, 0, 0, 12, "Nain"]
@@ -75,7 +90,7 @@ class Sheet_Create
 # ============================================
 
 	def class_choices(stats)
-		puts "=========================="
+		separation
 		guerrier_gladiateur =	Array[12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
 		ninja_assassin =		Array[0, 0, 13, 0, 0, "Ninja/Assassin"]
 		voleur =				Array[0, 0, 12, 0, 0, "Voleur"]
@@ -116,13 +131,13 @@ class Sheet_Create
 				end
 				if i == 4
 					counter += 1
-					puts "#{name} disponible : #{choice[5]}"
+					puts "#{@gre}#{name} disponible :#{@std} #{choice[5]}"
 					break
 				end
 			end
 		end
 		if counter == 0
-			puts "Aucune #{name} disponible !"
+			puts "#{@red}Aucune #{name} disponible !#{@std}"
 		end
 	end
 
@@ -131,9 +146,9 @@ class Sheet_Create
 # ============================================
 
 	def roll_misc
-		puts "=========================="
-		puts "Pièces d'or : #{rand(2..12) * 10}"
-		puts "Points de destin : #{rand(3)}"
+		separation
+		puts "#{@yel}Pièces d'or : #{@std}#{rand(2..12) * 10}"
+		puts "#{@whi}Points de destin : #{@std}#{rand(3)}"
 	end
 
 end
