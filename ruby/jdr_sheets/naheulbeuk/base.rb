@@ -69,7 +69,7 @@ class Base
 # |            Separation line               |
 # ============================================
 
-	def separation(color, corner = '=')
+	def separation(color, corner = '•')
 		line = corner[0]
 		(@s_len - 1).times do
 			line += '='
