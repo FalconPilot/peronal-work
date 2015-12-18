@@ -2,61 +2,82 @@
 # |            Naheulbeuk sheet              |
 # \------------------------------------------/
 
-class Sheet_Create
+require_relative 'base.rb'
+
+class Sheet_Create < Base
 
 # ============================================
 # |             Initialization               |
 # ============================================
 	def initialize
-		@bla = "\x1b[30m"
-		@red = "\x1b[31m"
-		@gre = "\x1b[32m"
-		@yel = "\x1b[33m"
-		@blu = "\x1b[34m"
-		@pin = "\x1b[35m"
-		@cya = "\x1b[36m"
-		@whi = "\x1b[37m"
-		@std = "\x1b[39m"
-
-		header
+		super
+		@stats = Array.new(3)
+		@races = Array.new(3)
+		@classes = Array.new(3)
+		@misc = roll_misc
 		3.times do |i|
-			stats = roll_stats(i)
-			race_choices(stats)
-			class_choices(stats)
+			@stats[i] = roll_stats
+			@races[i] = race_choices(@stats[i])
+			@classes[i] = class_choices(@stats[i])
 		end
-		roll_misc
-		separation
 	end
-	def separation
-		puts "#{@blu}=========================#{@std}"
-	end
+
 # ============================================
-# |             Program header               |
+# |          Display all content             |
 # ============================================
 
-	def header
-		separation
-		puts "    Création de fiche"
+	def display_all
+		@stats.each_with_index do |stat, i|
+			display_stats(stat, i)
+			display_choices(@races[i], "Race")
+			display_choices(@classes[i], "Classe")
+		end
+		display_misc
+		separation(@blu)
+	end
+
+# ============================================
+# |           Display misc rolls             |
+# ============================================
+
+	def display_misc
+		display_title("Jets divers", @blu)
+		gold = @misc[0]
+		bonus = @misc[1]
+		destin = @misc[2]
+		puts "#{@yel}Pièces d'or		#{@std}#{gold}#{@yel}PO#{@std}"
+		puts "#{@cya}Bonus de bourgeois	#{@std}+#{bonus}#{@yel}PO#{@std}"
+		puts "#{@pin}Points de destin	#{@std}#{destin}"
 	end
 
 # ============================================
 # |               Stat rolls                 |
 # ============================================
 
-	def roll_stats(num)
-		separation
-		puts "|      Tirage n°#{num + 1}    	|"
-		separation
+	def roll_stats
 		total = 0
 		stats = Array.new(5, 0)
-		names = Array["#{@pin}COU", "#{@cya}INT", "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
 		5.times do |index|
 			stats[index] = (rand(1..6) + 7)
-			puts "#{names[index]}#{@std} =	#{stats[index]}"
 			total += stats[index]
 		end
-		puts "#{@bla}Total : #{@std}#{total} (#{@red}min 40, #{@gre}max 65#{@std})"
 		stats
+	end
+
+
+# ============================================
+# |           Display stat roll              |
+# ============================================
+
+	def display_stats(stats, num = 0)
+		display_title("Tirage n°#{num + 1}", @yel)
+		total = 0
+		names = Array["#{@pin}COU", "#{@cya}INT", "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
+		stats.each_with_index do |stat, i|
+			total += stat
+			puts "#{names[i]}#{@std} =	#{stat}"
+		end
+		puts "#{@bla}Total : #{@std}#{total} (#{@red}min 40, #{@gre}max 65#{@std})"
 	end
 
 # ============================================
@@ -64,7 +85,6 @@ class Sheet_Create
 # ============================================
 	
 	def race_choices(stats)
-		separation
 		humain =		Array[0, 0, 0, 0, 0, "Humain"]
 		barbare =		Array[12, 0, 0, 0, 13, "Barbare"]
 		nain =			Array[11, 0, 0, 0, 12, "Nain"]
@@ -82,7 +102,7 @@ class Sheet_Create
 		races = Array[humain, barbare, nain, hautelfe, demielfe, elfesylvain, elfenoir,
 		orque, demiorque, gobelin, ogre, semihomme, gnomedunord]
 
-		choices = determine_choices(stats, races, "Race")
+		determine_choices(stats, races)
 	end
 
 # ============================================
@@ -90,7 +110,6 @@ class Sheet_Create
 # ============================================
 
 	def class_choices(stats)
-		separation
 		guerrier_gladiateur =	Array[12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
 		ninja_assassin =		Array[0, 0, 13, 0, 0, "Ninja/Assassin"]
 		voleur =				Array[0, 0, 12, 0, 0, "Voleur"]
@@ -107,16 +126,16 @@ class Sheet_Create
 		classes = Array[guerrier_gladiateur, ninja_assassin, voleur, pretre, mage_sorcier,
 		paladin, ranger, menestrel, pirate, marchand, ingenieur, bourgeois_noble]
 
-		determine_choices(stats, classes, "Classe")
+		determine_choices(stats, classes)
 	end
 
 # ============================================
 # |           Determine choices              |
 # ============================================
 
-	def determine_choices(stats, choices, name)
-		counter = 0
-		choices.each do |choice|
+	def determine_choices(stats, options)
+		final = Array["Vide"]
+		options.each do |choice|
 			choice.each_index do |i|
 				if choice[i] < 0
 					buffer = stats[i] + choice[i]
@@ -130,10 +149,25 @@ class Sheet_Create
 					end
 				end
 				if i == 4
-					counter += 1
-					puts "#{@gre}#{name} disponible :#{@std} #{choice[5]}"
+					final += Array[choice[5]]
 					break
 				end
+			end
+		end
+		final
+	end
+
+# ============================================
+# |            Display choices               |
+# ============================================
+
+	def display_choices(choices, name)
+		display_title("#{name}s disponibles", @blu)
+		counter = 0
+		choices.each_with_index do |choice, i|
+			if i > 0
+				counter += 1
+				puts "(#{i}) - #{@gre}#{name} disponible :#{@std} #{choice}"
 			end
 		end
 		if counter == 0
@@ -146,9 +180,7 @@ class Sheet_Create
 # ============================================
 
 	def roll_misc
-		separation
-		puts "#{@yel}Pièces d'or : #{@std}#{rand(2..12) * 10}"
-		puts "#{@whi}Points de destin : #{@std}#{rand(3)}"
+		Array[rand(2..12) * 10, rand(2..12) * 10, rand(3)]
 	end
 
 end
