@@ -2,4 +2,4 @@
 
 Options available for main.rb
 
--`nc` : Remove colors from output
+* `nc` : Remove colors from output
