@@ -10,7 +10,7 @@ class Base
 
     def initialize
         create_colors
-        define_len
+        @s_len = 40
         @version = "V.0.1 BÊTA"
         @author = "FalconPilot"
     end
@@ -21,8 +21,8 @@ class Base
 
     def header
         display_title("Création de fiche", @red)
-        puts center_text("Sheet Generator #{@cya}#{@version}#{@std}", 2)
-        puts center_text("Author : #{@cya}#{@author}#{@std}", 2)
+        puts "Sheet Generator #{@cya}#{@version}#{@std}".center(@s_len - 1)
+        puts "Author : #{@cya}#{@author}#{@std}".center(@s_len - 1)
     end
 
 # ============================================
@@ -58,43 +58,12 @@ class Base
     end
 
 # ============================================
-# |       Creating length variables          |
-# ============================================
-    def define_len
-        @s_len = 40
-        @c_len = @std.length
-    end
-
-# ============================================
 # |            Separation line               |
 # ============================================
 
     def separation(color, corner = '•')
-        line = corner[0]
-        (@s_len - 1).times do
-            line += '='
-        end
-        line += corner[0]
+        line = corner[0] + ('=' * (@s_len - 1)) + corner[0]
         puts "#{color}#{line}#{@std}"
-    end
-
-# ============================================
-# |              Center text                 |
-# ============================================
-
-    def center_text(text, colors = 0)
-        spaces = ' '
-        len = ((@s_len - text.length + @c_len * colors) / 2) - 2
-        if len > 0
-            len.times do
-                spaces += ' '
-            end
-        end
-        result = "#{spaces}#{text}#{spaces}"
-        while result.length < @s_len - 1
-            result += ' '
-        end
-        result
     end
 
 # ============================================
@@ -103,8 +72,7 @@ class Base
 
     def display_title(title, color)
         separation(color)
-        line = center_text(title)
-        puts "#{color}|#{@std}#{line}#{color}|#{@std}"
+        puts "#{color}|#{@std}#{title.center(@s_len - 1)}#{color}|#{@std}"
         separation(color)
     end
 

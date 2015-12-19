@@ -43,12 +43,9 @@ class Sheet < Base
 
     def display_misc
         display_title("Jets divers", @blu)
-        gold = @misc[0].to_s
-        bour = @misc[1].to_s
-        dest = @misc[2].to_s
-        while gold.length != 3 do gold = " " + gold end
-        while bour.length != 3 do bour = " " + bour end
-        while dest.length != 3 do dest = " " + dest end
+        gold = " " * (3 - @misc[0].to_s.length) + @misc[0].to_s
+        bour = " " * (3 - @misc[1].to_s.length) + @misc[1].to_s
+        dest = " " * (3 - @misc[2].to_s.length) + @misc[2].to_s
         puts "#{@yel}Or de départ      	#{@std}#{gold}#{@yel}PO#{@std}"
         puts "#{@yel}Bonus de bourgeois	#{@std}#{bour}#{@yel}PO#{@std}"
         puts "#{@pin}Points de destin  	#{@std}#{dest}#{@cya}DS#{@std}"
@@ -76,7 +73,7 @@ class Sheet < Base
     def display_stats(stats, num = 0)
         display_title("Tirage n°#{num + 1}", @yel)
         total = 0
-        names = Array["#{@pin}COU", "#{@cya}INT",
+        names = ["#{@pin}COU", "#{@cya}INT",
         "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
         stats.each_with_index do |stat, i|
             total += stat
@@ -90,21 +87,21 @@ class Sheet < Base
 # ============================================
     
     def race_choices(stats)
-        humain =               Array[0, 0, 0, 0, 0, "Humain"]
-        barbare =              Array[12, 0, 0, 0, 13, "Barbare"]
-        nain =                 Array[11, 0, 0, 0, 12, "Nain"]
-        hautelfe =             Array[0, 11, 12, 12, -12, "Haut-elfe"]
-        demielfe =             Array[0, 0, 11, 10, 0, "Demi-elfe"]
-        elfesylvain =          Array[0, 0, 10, 12, -11, "Elfe sylvain"]
-        elfenoir =             Array[0, 12, 13, 0, -12, "Elfe noir"]
-        orque =                Array[0, -8, 0, -10, 12, "Orque"]
-        demiorque =            Array[0, -10, -11, 0, 12, "Demi-orque"]
-        gobelin =              Array[-10, -10, 0, -8, -9, "Gobelin"]
-        ogre =                 Array[0, -9, -11, -10, 13, "Ogre"]
-        semihomme =            Array[12, 10, 0, 0, -10, "Semi-homme"]
-        gnomedunord =          Array[0, 10, 13, 0, -8, "Gnome des forêts du nord"]
+        humain =               [0, 0, 0, 0, 0, "Humain"]
+        barbare =              [12, 0, 0, 0, 13, "Barbare"]
+        nain =                 [11, 0, 0, 0, 12, "Nain"]
+        hautelfe =             [0, 11, 12, 12, -12, "Haut-elfe"]
+        demielfe =             [0, 0, 11, 10, 0, "Demi-elfe"]
+        elfesylvain =          [0, 0, 10, 12, -11, "Elfe sylvain"]
+        elfenoir =             [0, 12, 13, 0, -12, "Elfe noir"]
+        orque =                [0, -8, 0, -10, 12, "Orque"]
+        demiorque =            [0, -10, -11, 0, 12, "Demi-orque"]
+        gobelin =              [-10, -10, 0, -8, -9, "Gobelin"]
+        ogre =                 [0, -9, -11, -10, 13, "Ogre"]
+        semihomme =            [12, 10, 0, 0, -10, "Semi-homme"]
+        gnomedunord =          [0, 10, 13, 0, -8, "Gnome des forêts du nord"]
 
-        races = Array[humain, barbare, nain, hautelfe,
+        races = [humain, barbare, nain, hautelfe,
         demielfe, elfesylvain, elfenoir, orque, demiorque,
         gobelin, ogre, semihomme, gnomedunord]
 
@@ -116,20 +113,20 @@ class Sheet < Base
 # ============================================
 
     def class_choices(stats)
-        guerrier_gladiateur =  Array[12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
-        ninja_assassin =       Array[0, 0, 13, 0, 0, "Ninja/Assassin"]
-        voleur =               Array[0, 0, 12, 0, 0, "Voleur"]
-        pretre =               Array[0, 0, 0, 12, 0, "Prêtre"]
-        mage_sorcier =         Array[0, 12, 0, 0, 0, "Mage/Sorcier"]
-        paladin =              Array[12, 10, 0, 11, 9, "Paladin"]
-        ranger =               Array[0, 0, 10, 10, 0, "Ranger"]
-        menestrel =            Array[0, 0, 11, 12, 0, "Ménestrel"]
-        pirate =               Array[11, 0, 11, 0, 0, "Pirate"]
-        marchand =             Array[0, 12, 0, 11, 0, "Marchand"]
-        ingenieur =            Array[0, 0, 11, 0, 0, "Ingénieur"]
-        bourgeois_noble =      Array[0, 10, 0, 11, 0, "Bourgeois/Noble"]
+        guerrier_gladiateur =  [12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
+        ninja_assassin =       [0, 0, 13, 0, 0, "Ninja/Assassin"]
+        voleur =               [0, 0, 12, 0, 0, "Voleur"]
+        pretre =               [0, 0, 0, 12, 0, "Prêtre"]
+        mage_sorcier =         [0, 12, 0, 0, 0, "Mage/Sorcier"]
+        paladin =              [12, 10, 0, 11, 9, "Paladin"]
+        ranger =               [0, 0, 10, 10, 0, "Ranger"]
+        menestrel =            [0, 0, 11, 12, 0, "Ménestrel"]
+        pirate =               [11, 0, 11, 0, 0, "Pirate"]
+        marchand =             [0, 12, 0, 11, 0, "Marchand"]
+        ingenieur =            [0, 0, 11, 0, 0, "Ingénieur"]
+        bourgeois_noble =      [0, 10, 0, 11, 0, "Bourgeois/Noble"]
 
-        classes = Array[guerrier_gladiateur, ninja_assassin,
+        classes = [guerrier_gladiateur, ninja_assassin,
         voleur, pretre, mage_sorcier,paladin, ranger, menestrel,
         pirate, marchand, ingenieur, bourgeois_noble]
 
@@ -179,7 +176,7 @@ class Sheet < Base
 # ============================================
 
     def roll_misc
-        Array[rand(2..12) * 10, rand(2..12) * 10, rand(3)]
+        [rand(2..12) * 10, rand(2..12) * 10, rand(3)]
     end
 
 end
