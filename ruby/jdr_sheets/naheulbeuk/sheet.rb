@@ -145,15 +145,9 @@ class Sheet < Base
         options.each do |choice|
             choice.each_index do |i|
                 if choice[i] < 0
-                    buffer = stats[i] + choice[i]
-                    if buffer > 0
-                        break
-                    end
+                    break if (stats[i] + choice[i]) > 0
                 else
-                    buffer = stats[i] - choice[i]
-                    if buffer < 0
-                        break
-                    end
+                    break if (stats[i] - choice[i]) < 0
                 end
                 if i == 4
                     final += [choice[5]]
