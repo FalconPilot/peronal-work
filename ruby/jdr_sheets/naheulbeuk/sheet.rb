@@ -42,13 +42,14 @@ class Sheet < Base
 # ============================================
 
     def display_misc
+        c_len = @std.length * 4
         display_title("Jets divers", @blu)
-        gold = " " * (3 - @misc[0].to_s.length) + @misc[0].to_s
-        bour = " " * (3 - @misc[1].to_s.length) + @misc[1].to_s
-        dest = " " * (3 - @misc[2].to_s.length) + @misc[2].to_s
-        puts "#{@yel}Or de départ      	#{@std}#{gold}#{@yel}PO#{@std}"
-        puts "#{@yel}Bonus de bourgeois	#{@std}#{bour}#{@yel}PO#{@std}"
-        puts "#{@pin}Points de destin  	#{@std}#{dest}#{@cya}DS#{@std}"
+        gold = " " * (8 - @misc[0].to_s.length) + @misc[0].to_s
+        bour = " " * (8 - @misc[1].to_s.length) + @misc[1].to_s
+        dest = " " * (8 - @misc[2].to_s.length) + @misc[2].to_s
+        puts "#{@yel}Or de départ      #{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
+        puts "#{@pin}Bonus de bourgeois#{@std}#{bour}#{@yel}PO#{@std}".center(@s_len + c_len)
+        puts "#{@cya}Points de destin  #{@std}#{dest}#{@bla}DS#{@std}".center(@s_len + c_len)
     end
 
 # ============================================
@@ -71,15 +72,16 @@ class Sheet < Base
 # ============================================
 
     def display_stats(stats, num = 0)
-        display_title("Tirage n°#{num + 1}", @yel)
+        c_len = @std.length * 3
         total = 0
         names = ["#{@pin}COU", "#{@cya}INT",
         "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
+        display_title("Tirage n°#{num + 1}", @yel)
         stats.each_with_index do |stat, i|
             total += stat
-            puts "#{names[i]}#{@std} =	#{stat}"
+            puts "#{names[i]}#{@std} =	#{stat}".center(@s_len)
         end
-        puts "#{@bla}Total : #{@std}#{total} (#{@red}min 40, #{@gre}max 65#{@std})"
+        puts "#{@bla}TOT#{@std} =	#{total}".center(@s_len)
     end
 
 # ============================================
