@@ -17,6 +17,7 @@ begin
     @base = Base.new
     @sheet = Sheet.new
     @params = Params.new(params)
+
     modifs = @params.parse_params
     modifs.each do |option|
         @sheet.send(option)
