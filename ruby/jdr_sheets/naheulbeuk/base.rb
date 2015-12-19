@@ -11,7 +11,7 @@ class Base
     def initialize
         create_colors
         @s_len = 40
-        @version = "V.0.1 BÊTA"
+        @version = "V.0.2 BÊTA"
         @author = "FalconPilot"
     end
 
