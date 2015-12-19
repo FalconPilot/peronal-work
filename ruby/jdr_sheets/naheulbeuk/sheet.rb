@@ -4,7 +4,7 @@
 
 require_relative 'base.rb'
 
-class Sheet_Create < Base
+class Sheet < Base
 
 # ============================================
 # |             Initialization               |
