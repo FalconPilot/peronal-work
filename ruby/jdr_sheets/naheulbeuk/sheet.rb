@@ -89,24 +89,26 @@ class Sheet < Base
 # ============================================
     
     def race_choices(stats)
-        humain =               [0, 0, 0, 0, 0, "Humain"]
-        barbare =              [12, 0, 0, 0, 13, "Barbare"]
-        nain =                 [11, 0, 0, 0, 12, "Nain"]
-        hautelfe =             [0, 11, 12, 12, -12, "Haut-elfe"]
-        demielfe =             [0, 0, 11, 10, 0, "Demi-elfe"]
-        elfesylvain =          [0, 0, 10, 12, -11, "Elfe sylvain"]
-        elfenoir =             [0, 12, 13, 0, -12, "Elfe noir"]
-        orque =                [0, -8, 0, -10, 12, "Orque"]
-        demiorque =            [0, -10, -11, 0, 12, "Demi-orque"]
-        gobelin =              [-10, -10, 0, -8, -9, "Gobelin"]
-        ogre =                 [0, -9, -11, -10, 13, "Ogre"]
-        semihomme =            [12, 10, 0, 0, -10, "Semi-homme"]
-        gnomedunord =          [0, 10, 13, 0, -8, "Gnome des forêts du nord"]
+        ra0 =       [0, 0, 0, 0, 0, "Humain"]
+        ra1 =       [12, 0, 0, 0, 13, "Barbare"]
+        ra2 =       [11, 0, 0, 0, 12, "Nain"]
+        ra3 =       [0, 11, 12, 12, -12, "Haut-elfe"]
+        ra4 =       [0, 0, 11, 10, 0, "Demi-elfe"]
+        ra5 =       [0, 0, 10, 12, -11, "Elfe sylvain"]
+        ra6 =       [0, 12, 13, 0, -12, "Elfe noir"]
+        ra7 =       [0, -8, 0, -10, 12, "Orque"]
+        ra8 =       [0, -10, -11, 0, 12, "Demi-orque"]
+        ra9 =       [-10, -10, 0, -8, -9, "Gobelin"]
+        ra10 =      [0, -9, -11, -10, 13, "Ogre"]
+        ra11 =      [12, 10, 0, 0, -10, "Semi-homme"]
+        ra12 =      [0, 10, 13, 0, -8, "Gnome des forêts du nord"]
 
-        races = [humain, barbare, nain, hautelfe,
-        demielfe, elfesylvain, elfenoir, orque, demiorque,
-        gobelin, ogre, semihomme, gnomedunord]
-
+        races = []
+        i = 0
+        while binding.eval("defined?(ra#{i})")
+            races += [binding.eval("ra#{i}")]
+            i += 1
+        end
         determine_choices(stats, races)
     end
 
@@ -115,23 +117,25 @@ class Sheet < Base
 # ============================================
 
     def class_choices(stats)
-        guerrier_gladiateur =  [12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
-        ninja_assassin =       [0, 0, 13, 0, 0, "Ninja/Assassin"]
-        voleur =               [0, 0, 12, 0, 0, "Voleur"]
-        pretre =               [0, 0, 0, 12, 0, "Prêtre"]
-        mage_sorcier =         [0, 12, 0, 0, 0, "Mage/Sorcier"]
-        paladin =              [12, 10, 0, 11, 9, "Paladin"]
-        ranger =               [0, 0, 10, 10, 0, "Ranger"]
-        menestrel =            [0, 0, 11, 12, 0, "Ménestrel"]
-        pirate =               [11, 0, 11, 0, 0, "Pirate"]
-        marchand =             [0, 12, 0, 11, 0, "Marchand"]
-        ingenieur =            [0, 0, 11, 0, 0, "Ingénieur"]
-        bourgeois_noble =      [0, 10, 0, 11, 0, "Bourgeois/Noble"]
+        cl0 =       [12, 0, 0, 0, 12, "Guerrier/Gladiateur"]
+        cl1 =       [0, 0, 13, 0, 0, "Ninja/Assassin"]
+        cl2 =       [0, 0, 12, 0, 0, "Voleur"]
+        cl3 =       [0, 0, 0, 12, 0, "Prêtre"]
+        cl4 =       [0, 12, 0, 0, 0, "Mage/Sorcier"]
+        cl5 =       [12, 10, 0, 11, 9, "Paladin"]
+        cl6 =       [0, 0, 10, 10, 0, "Ranger"]
+        cl7 =       [0, 0, 11, 12, 0, "Ménestrel"]
+        cl8 =       [11, 0, 11, 0, 0, "Pirate"]
+        cl9 =       [0, 12, 0, 11, 0, "Marchand"]
+        cl10 =      [0, 0, 11, 0, 0, "Ingénieur"]
+        cl11 =      [0, 10, 0, 11, 0, "Bourgeois/Noble"]
 
-        classes = [guerrier_gladiateur, ninja_assassin,
-        voleur, pretre, mage_sorcier,paladin, ranger, menestrel,
-        pirate, marchand, ingenieur, bourgeois_noble]
-
+        classes = []
+        i = 0
+        while binding.eval("defined?(cl#{i})")
+            classes += [binding.eval("cl#{i}")]
+            i += 1
+        end
         determine_choices(stats, classes)
     end
 
@@ -166,7 +170,7 @@ class Sheet < Base
         counter = 0
         choices.each_with_index do |choice, i|
             counter += 1
-            puts "(#{i}) - #{@gre}#{name} disponible :#{@std} #{choice}"
+            puts "(#{i + 1}) - #{@gre}#{name} disponible :#{@std} #{choice}"
         end
         if counter == 0
             puts "#{@red}Aucune #{name} disponible !#{@std}"
