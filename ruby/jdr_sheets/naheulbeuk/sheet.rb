@@ -49,7 +49,7 @@ class Sheet < Base
         dest = " " * (8 - @misc[2].to_s.length) + @misc[2].to_s
         puts "#{@yel}Or de départ      #{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
         puts "#{@pin}Bonus de bourgeois#{@std}#{bour}#{@yel}PO#{@std}".center(@s_len + c_len)
-        puts "#{@cya}Points de destin  #{@std}#{dest}#{@bla}DS#{@std}".center(@s_len + c_len)
+        puts "#{@cya}Points de destin  #{@std}#{dest}#{@whi}DS#{@std}".center(@s_len + c_len)
     end
 
 # ============================================
@@ -81,7 +81,7 @@ class Sheet < Base
             total += stat
             puts "#{names[i]}#{@std} =	#{stat}".center(@s_len)
         end
-        puts "#{@bla}TOT#{@std} =	#{total}".center(@s_len)
+        puts "#{@whi}TOT#{@std} =	#{total}".center(@s_len)
     end
 
 # ============================================
