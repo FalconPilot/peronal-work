@@ -27,6 +27,7 @@ class Sheet < Base
 # ============================================
 
     def display_all
+        header
         @stats.each_with_index do |stat, i|
             display_stats(stat, i)
             display_choices(@races[i], "Race")
@@ -171,10 +172,8 @@ class Sheet < Base
         display_title("#{name}s disponibles", @blu)
         counter = 0
         choices.each_with_index do |choice, i|
-            if i > 0
-                counter += 1
-                puts "(#{i}) - #{@gre}#{name} disponible :#{@std} #{choice}"
-            end
+            counter += 1
+            puts "(#{i}) - #{@gre}#{name} disponible :#{@std} #{choice}"
         end
         if counter == 0
             puts "#{@red}Aucune #{name} disponible !#{@std}"
