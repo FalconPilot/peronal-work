@@ -134,7 +134,7 @@ class Sheet < Base
 # ============================================
 
 	def determine_choices(stats, options)
-		final = Array["Vide"]
+		final = []
 		options.each do |choice|
 			choice.each_index do |i|
 				if choice[i] < 0
@@ -149,7 +149,7 @@ class Sheet < Base
 					end
 				end
 				if i == 4
-					final += Array[choice[5]]
+					final += [choice[5]]
 					break
 				end
 			end
