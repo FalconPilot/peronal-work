@@ -14,7 +14,6 @@ begin
 
     params = ARGV
 
-    @base = Base.new
     @sheet = Sheet.new
     @params = Params.new(params)
 
@@ -23,7 +22,6 @@ begin
         @sheet.send(option)
     end
 
-    @base.header
     @sheet.display_all
 
 end
