@@ -21,8 +21,7 @@ class Params
         modif = []
         @params.each do |param|
             case param
-                when "-nc"
-                    modif += ["remove_colors"]
+                when "-nc" then modif += ["remove_colors"]
             end
         end
         modif
