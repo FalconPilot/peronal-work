@@ -12,16 +12,16 @@ begin
 # |              Main program                |
 # ============================================
 
-    params = ARGV
+    args = ARGV
 
-    @sheet = Sheet.new
-    @params = Params.new(params)
+    sheet = Sheet.new
+    param = Params.new(args)
 
-    modifs = @params.parse_params
-    modifs.each do |option|
-        @sheet.send(option)
+    params = param.parse_params
+    params.each do |option|
+        sheet.send(option)
     end
 
-    @sheet.display_all
+    sheet.display_all
 
 end
