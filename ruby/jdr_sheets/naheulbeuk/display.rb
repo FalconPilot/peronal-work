@@ -54,11 +54,11 @@ class Display < Base
 # ============================================
 
     def display_stats(stats, num = 0)
+        display_title("Tirage n°#{num + 1}", @yel)
         c_len = @std.length * 3
         total = 0
         names = ["#{@pin}COU", "#{@cya}INT",
         "#{@gre}ADR", "#{@yel}CHA", "#{@red}FOR"]
-        display_title("Tirage n°#{num + 1}", @yel)
         stats.each_with_index do |stat, i|
             total += stat
             puts "#{names[i]}#{@std} =	#{stat}".center(@s_len)
