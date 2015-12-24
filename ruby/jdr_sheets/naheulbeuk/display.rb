@@ -13,10 +13,7 @@ class Display < Base
 
     def initialize(sheet)
         super()
-        @stats = sheet.instance_variable_get(:@stats)
-        @races = sheet.instance_variable_get(:@races)
-        @classes = sheet.instance_variable_get(:@classes)
-        @misc = sheet.instance_variable_get(:@misc)
+        @sheet = sheet
     end
 
 # ============================================
@@ -25,10 +22,10 @@ class Display < Base
 
     def display_all
         header
-        @stats.each_with_index do |stat, i|
+        @sheet.stats.each_with_index do |stat, i|
             display_stats(stat, i)
-            display_choices(@races[i], "Race")
-            display_choices(@classes[i], "Classe")
+            display_choices(@sheet.races[i], "Race")
+            display_choices(@sheet.classes[i], "Classe")
         end
         display_misc
         separation(@blu)
@@ -41,9 +38,9 @@ class Display < Base
     def display_misc
         c_len = @std.length * 4
         display_title("Jets divers", @blu)
-        gold = " " * (8 - @misc[0].to_s.length) + @misc[0].to_s
-        bour = " " * (8 - @misc[1].to_s.length) + @misc[1].to_s
-        dest = " " * (8 - @misc[2].to_s.length) + @misc[2].to_s
+        gold = " " * (8 - @sheet.misc[0].to_s.length) + @sheet.misc[0].to_s
+        bour = " " * (8 - @sheet.misc[1].to_s.length) + @sheet.misc[1].to_s
+        dest = " " * (8 - @sheet.misc[2].to_s.length) + @sheet.misc[2].to_s
         puts "#{@yel}Or de départ      #{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
         puts "#{@pin}Bonus de bourgeois#{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
         puts "#{@cya}Points de destin  #{@std}#{gold}#{@whi}DS#{@std}".center(@s_len + c_len)

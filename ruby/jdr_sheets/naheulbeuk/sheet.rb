@@ -4,6 +4,8 @@
 
 class Sheet
 
+attr_reader :stats, :races, :classes, :misc
+
 # ============================================
 # |             Initialization               |
 # ============================================
