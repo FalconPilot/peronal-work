@@ -10,7 +10,6 @@ attr_reader :stats, :races, :classes, :misc
 # |             Initialization               |
 # ============================================
     def initialize
-        super
         @stats = Array.new(3)
         @races = Array.new(3)
         @classes = Array.new(3)

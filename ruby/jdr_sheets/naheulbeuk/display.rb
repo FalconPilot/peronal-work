@@ -42,8 +42,8 @@ class Display < DisplayBase
         bour = " " * (8 - @sheet.misc[1].to_s.length) + @sheet.misc[1].to_s
         dest = " " * (8 - @sheet.misc[2].to_s.length) + @sheet.misc[2].to_s
         puts "#{@yel}Or de départ      #{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
-        puts "#{@pin}Bonus de bourgeois#{@std}#{gold}#{@yel}PO#{@std}".center(@s_len + c_len)
-        puts "#{@cya}Points de destin  #{@std}#{gold}#{@whi}DS#{@std}".center(@s_len + c_len)
+        puts "#{@pin}Bonus de bourgeois#{@std}#{bour}#{@yel}PO#{@std}".center(@s_len + c_len)
+        puts "#{@cya}Points de destin  #{@std}#{dest}#{@whi}DS#{@std}".center(@s_len + c_len)
     end
 
 # ============================================
