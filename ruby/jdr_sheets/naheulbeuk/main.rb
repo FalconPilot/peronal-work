@@ -21,7 +21,7 @@ begin
 
     params = param.parse_params
     params.each do |option|
-        sheet.send(option)
+        display.send(option)
     end
     display.display_all
 
