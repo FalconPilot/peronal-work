@@ -2,9 +2,9 @@
 # |             Display sheet                |
 # \------------------------------------------/
 
-require_relative 'base.rb'
+require_relative 'display_base.rb'
 
-class Display < Base
+class Display < DisplayBase
 
 
 # ============================================

@@ -3,7 +3,7 @@
 # \------------------------------------------/
 
 require_relative 'params.rb'
-require_relative 'base.rb'
+require_relative 'display_base.rb'
 require_relative 'sheet.rb'
 require_relative 'display.rb'
 

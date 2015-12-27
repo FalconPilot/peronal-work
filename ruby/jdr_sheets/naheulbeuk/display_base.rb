@@ -2,7 +2,7 @@
 # |             Basic parameters             |
 # \------------------------------------------/
 
-class Base
+class DisplayBase
 
 # ============================================
 # |             Initialization               |
