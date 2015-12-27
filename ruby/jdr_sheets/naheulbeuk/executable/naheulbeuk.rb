@@ -27,7 +27,6 @@ class Params
     end
 
 end
-
 # /------------------------------------------\
 # |            Naheulbeuk sheet              |
 # \------------------------------------------/
@@ -152,7 +151,6 @@ attr_reader :stats, :races, :classes, :misc
     end
 
 end
-
 # /------------------------------------------\
 # |             Basic parameters             |
 # \------------------------------------------/
@@ -232,10 +230,10 @@ class DisplayBase
     end
 
 end
-
 # /------------------------------------------\
 # |             Display sheet                |
 # \------------------------------------------/
+
 
 class Display < DisplayBase
 
@@ -313,10 +311,10 @@ class Display < DisplayBase
     end
 
 end
-
 # /------------------------------------------\
 # |             Main Naheulbeuk              |
 # \------------------------------------------/
+
 
 begin
 
@@ -337,5 +335,3 @@ begin
     display.display_all
 
 end
-
-
