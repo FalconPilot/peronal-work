@@ -3,16 +3,13 @@
     line-height: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-size: 20px;
+    font-variant: small-caps;
     text-align: center;
     background-color: #aaaaaa;
     border: solid 10px #eeeeee;
     border-bottom: none;
     border-radius: 5px 5px 0 0;
-}
-
-.rp_head {
-    font-size: 20px;
-    font-variant: small-caps;
 }
 
 .rp_block {
