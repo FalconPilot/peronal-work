@@ -3,6 +3,8 @@
     line-height: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-size: 20px:
+    font-variant: small-caps;
     text-align: center;
     background-color: #aaaaaa;
     border: solid 10px #eeeeee;
@@ -17,4 +19,9 @@
     border-top: none;
     border-radius: 0 0 5px 5px;
     box-shadow: inset 0px 8px 8px -8px #333333;
+}
+
+.rp_dialog {
+    text-shadow: 0px 0px 2px #112211;
+    color: #009900;
 }
