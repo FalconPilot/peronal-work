@@ -1,0 +1,13 @@
+.rp_header {
+    height: 30px;
+    line-height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    border: solid 10px #eeeeee;
+    border-top: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.rp_block {
+}
