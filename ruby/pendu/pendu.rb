@@ -32,10 +32,13 @@ begin
 # ============================================
 
     def display_content
-        print "\n#{@lives} Lives left	["
+        print @yel
+        print "\n#{@lives} Lives left	#{@std}["
+        print @gre
         @lives.times do
-            print "O"
+            print "|"
         end
+        print @std
         puts "]"
         print "\nLetters used : "
         @used.each do |letter|
@@ -129,6 +132,9 @@ begin
 # ============================================
 
     def colors_initialize
+        @gre = "\033[32m"
+        @yel = "\033[33m"
+        @std = "\033[39m"
     end
 
 # ============================================
@@ -154,6 +160,7 @@ begin
 # ============================================
 
     data_initialize
+    colors_initialize
     routine
 
 end

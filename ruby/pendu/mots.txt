@@ -1,12 +1,6 @@
-car
-pizza
-dishwasher
-hitman
+voiture
+lunettes
+aviateur
+caravane
 kalachnikov
-rainbow
-marauder
-superpowers
-jailbird
-ninja
-vanilla
-meatball
+hamburger
